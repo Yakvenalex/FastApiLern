@@ -1,2 +1,6 @@
 fastapi[all]
 requests
+sqlalchemy
+alembic
+asyncpg
+pydantic-settings

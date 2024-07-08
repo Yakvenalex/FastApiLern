@@ -1,10 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException
 from utils import json_to_dict_list, add_student, upd_student, dell_student
-import os
 from enum import Enum
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from datetime import date, datetime
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Any
 import re
 
 
@@ -118,6 +117,7 @@ def add_student_handler(student: SStudent):
         return {"message": "Студент успешно добавлен!"}
     else:
         raise HTTPException(status_code=400, detail="Ошибка при удалении студента")
+
 
 # Определение модели для фильтра обновления
 class SUpdateFilter(BaseModel):
