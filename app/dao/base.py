@@ -63,6 +63,29 @@ class BaseDAO:
                 return new_instance
 
     @classmethod
+    async def add_many(cls, instances: list[dict]):
+        """
+        Асинхронно создает несколько новых экземпляров модели с указанными значениями.
+
+        Аргументы:
+            instances: Список словарей, где каждый словарь содержит именованные параметры для создания нового экземпляра модели.
+
+        Возвращает:
+            Список созданных экземпляров модели.
+        """
+        async with async_session_maker() as session:
+            async with session.begin():
+                new_instances = [cls.model(**values) for values in instances]
+                session.add_all(new_instances)
+                try:
+                    await session.commit()
+                except SQLAlchemyError as e:
+                    await session.rollback()
+                    raise e
+                return new_instances
+
+
+    @classmethod
     async def update(cls, filter_by, **values):
         """
         Асинхронно обновляет экземпляры модели, удовлетворяющие критериям фильтрации, указанным в filter_by,
