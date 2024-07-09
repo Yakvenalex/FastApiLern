@@ -35,3 +35,7 @@ class SStudent(BaseModel):
         if values and values >= datetime.now().date():
             raise ValueError('Дата рождения должна быть в прошлом')
         return values
+
+
+class SNoStudent(BaseModel):
+    message: str
