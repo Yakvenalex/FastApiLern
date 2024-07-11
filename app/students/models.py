@@ -1,5 +1,5 @@
-from sqlalchemy import ForeignKey, text, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base, str_uniq, int_pk, str_null_true
 from datetime import date
 
@@ -18,6 +18,9 @@ class Student(Base):
     special_notes: Mapped[str_null_true]
     major_id: Mapped[int] = mapped_column(ForeignKey("majors.id"), nullable=False)
 
+    # Определяем отношения: один студент имеет один факультет
+    major: Mapped["Major"] = relationship("Major", back_populates="students")
+
     def __str__(self):
         return (f"{self.__class__.__name__}(id={self.id}, "
                 f"first_name={self.first_name!r},"
@@ -26,16 +29,17 @@ class Student(Base):
     def __repr__(self):
         return str(self)
 
-
-# создаем модель таблицы факультетов (majors)
-class Major(Base):
-    id: Mapped[int_pk]
-    major_name: Mapped[str_uniq]
-    major_description: Mapped[str_null_true]
-    count_students: Mapped[int] = mapped_column(server_default=text('0'))
-
-    def __str__(self):
-        return f"{self.__class__.__name__}(id={self.id}, major_name={self.major_name!r})"
-
-    def __repr__(self):
-        return str(self)
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "phone_number": self.phone_number,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "date_of_birth": self.date_of_birth,
+            "email": self.email,
+            "address": self.address,
+            "enrollment_year": self.enrollment_year,
+            "course": self.course,
+            "special_notes": self.special_notes,
+            "major_id": self.major_id
+        }
