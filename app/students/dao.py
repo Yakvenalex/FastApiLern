@@ -1,5 +1,4 @@
-from sqlalchemy import update, delete, event
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import update, event, delete
 from sqlalchemy.future import select
 from sqlalchemy.orm import joinedload
 from app.dao.base import BaseDAO
@@ -59,18 +58,20 @@ class StudentDAO(BaseDAO):
                 return new_student_id
 
     @classmethod
-    async def delete_student(cls, student_id: int):
+    async def delete_student_by_id(cls, student_id: int):
         async with async_session_maker() as session:
             async with session.begin():
-                # Query to find the student by ID
                 query = select(cls.model).filter_by(id=student_id)
                 result = await session.execute(query)
-                student_info = result.scalar_one_or_none()
+                student_to_delete = result.scalar_one_or_none()
 
-                # If student is found, delete the student
-                if student_info:
-                    # await session.delete(student_info)
-                    await session.commit()
-                    return True
-                else:
-                    return False
+                if not student_to_delete:
+                    return None
+
+                # Delete the student
+                await session.execute(
+                    delete(cls.model).filter_by(id=student_id)
+                )
+
+                await session.commit()
+                return student_id
