@@ -41,9 +41,9 @@ class SStudent(BaseModel):
 
 class SStudentAdd(BaseModel):
     phone_number: str = Field(..., description="Номер телефона в международном формате, начинающийся с '+'")
-    first_name: str = Field(..., min_length=1, max_length=50, description="Имя студента, от 1 до 50 символов")
-    last_name: str = Field(..., min_length=1, max_length=50,
-                           description="Фамилия студента, от 1 до 50 символов")
+    first_name: str = Field(..., min_length=3, max_length=50, description="Имя студента, от 3 до 50 символов")
+    last_name: str = Field(..., min_length=3, max_length=50,
+                           description="Фамилия студента, от 3 до 50 символов")
     date_of_birth: date = Field(..., description="Дата рождения студента в формате ГГГГ-ММ-ДД")
     email: EmailStr = Field(..., description="Электронная почта студента")
     address: str = Field(..., min_length=10, max_length=200,
