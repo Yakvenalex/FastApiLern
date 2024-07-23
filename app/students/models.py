@@ -16,6 +16,7 @@ class Student(Base):
     address: Mapped[str] = mapped_column(Text, nullable=False)
     enrollment_year: Mapped[int]
     course: Mapped[int]
+    photo: Mapped[str] = mapped_column(Text, nullable=True)
     special_notes: Mapped[str_null_true]
     major_id: Mapped[int] = mapped_column(ForeignKey("majors.id"), nullable=False)
 

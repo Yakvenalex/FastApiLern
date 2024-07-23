@@ -21,7 +21,7 @@ class SStudent(BaseModel):
     course: int = Field(..., ge=1, le=5, description="Курс должен быть в диапазоне от 1 до 5")
     special_notes: Optional[str] = Field(None, max_length=500,
                                          description="Дополнительные заметки, не более 500 символов")
-
+    photo: Optional[str] = Field(None, max_length=100, description="Фото студента")
     major: Optional[str] = Field(..., description="Название факультета")
 
     @field_validator("phone_number")

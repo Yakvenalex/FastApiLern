@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все студенты</title>
+    <link rel="stylesheet" type="text/css" href="/static/style/styles.css">
+</head>
+<body>
+    <h1>Список студентов</h1>
+    <div>
+        {% for student in students %}
+        <div class="student-card">
+            <img src="/static/images/{{ student.id }}.webp" alt="Фото студента">
+            <div class="details">
+                <h2>ID: {{ student.id }}</h2>
+                <p>Полное имя: {{ student.first_name }} {{ student.last_name }}</p>
+                <p>Email: {{ student.email }}</p>
+                <!-- Добавьте другие атрибуты по вашему усмотрению -->
+            </div>
+            <a href="/students?id={{ student.id }}">Смотреть всю информацию</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
