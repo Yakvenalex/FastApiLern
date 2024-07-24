@@ -31,7 +31,24 @@ class StudentDAO(BaseDAO):
     model = Student
 
     @classmethod
-    async def find_full_data(cls, student_id: int):
+    async def find_students(cls, **student_data):
+        async with async_session_maker() as session:
+            # Создайте запрос с фильтрацией по параметрам student_data
+            query = select(cls.model).options(joinedload(cls.model.major)).filter_by(**student_data)
+            result = await session.execute(query)
+            students_info = result.scalars().all()
+
+            # Преобразуйте данные студентов в словари с информацией о специальности
+            students_data = []
+            for student in students_info:
+                student_dict = student.to_dict()
+                student_dict['major'] = student.major.major_name if student.major else None
+                students_data.append(student_dict)
+
+            return students_data
+
+    @classmethod
+    async def find_full_data(cls, student_id):
         async with async_session_maker() as session:
             # Query to get student info along with major info
             query = select(cls.model).options(joinedload(cls.model.major)).filter_by(id=student_id)

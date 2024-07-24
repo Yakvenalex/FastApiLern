@@ -9,6 +9,9 @@ IncorrectEmailOrPasswordException = HTTPException(status_code=status.HTTP_401_UN
 TokenExpiredException = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                       detail='Токен истек')
 
+TokenNoFound = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                             detail='Токен истек')
+
 NoJwtException = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                detail='Токен не валидный!')
 

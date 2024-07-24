@@ -8,12 +8,12 @@ router = APIRouter(prefix='/students', tags=['Работа со студента
 
 @router.get("/", summary="Получить всех студентов")
 async def get_all_students(request_body: RBStudent = Depends()) -> list[SStudent]:
-    return await StudentDAO.find_all(**request_body.to_dict())
+    return await StudentDAO.find_students(**request_body.to_dict())
 
 
-@router.get("/{id}", summary="Получить одного студента по id")
+@router.get("/{student_id}", summary="Получить одного студента по id")
 async def get_student_by_id(student_id: int) -> SStudent | dict:
-    rez = await StudentDAO.find_full_data(student_id)
+    rez = await StudentDAO.find_full_data(student_id=student_id)
     if rez is None:
         return {'message': f'Студент с ID {student_id} не найден!'}
     return rez

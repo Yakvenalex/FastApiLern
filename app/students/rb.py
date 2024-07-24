@@ -8,6 +8,7 @@ class RBStudent:
         self.major_id = major_id
         self.enrollment_year = enrollment_year
 
+
     def to_dict(self) -> dict:
         return {key: value for key, value in {
             'id': self.id,

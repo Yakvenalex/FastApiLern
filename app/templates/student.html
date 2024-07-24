@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о студенте</title>
+    <link rel="stylesheet" type="text/css" href="/static/style/student.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Информация о студенте</h1>
+        <div class="student-profile">
+            <img src="/static/images/{{ student.id }}.webp" alt="Фото студента">
+            <div class="student-info">
+                <h2>ID: {{ student.id }}</h2>
+                <p><strong>Полное имя:</strong> {{ student.first_name }} {{ student.last_name }}</p>
+                <p><strong>Email:</strong> {{ student.email }}</p>
+                <p><strong>Дата рождения:</strong> {{ student.date_of_birth }}</p>
+                <p><strong>Адрес:</strong> {{ student.address }}</p>
+                <p><strong>Год поступления:</strong> {{ student.enrollment_year }}</p>
+                <p><strong>Курс:</strong> {{ student.course }}</p>
+                <p><strong>Специальность:</strong> {{ student.major }}</p>
+                <p><strong>Специальные заметки:</strong> {{ student.special_notes }}</p>
+            </div>
+        </div>
+        <a href="/pages/students" class="back-link">Вернуться к списку студентов</a>
+    </div>
+</body>
+</html>

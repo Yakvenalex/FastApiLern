@@ -16,9 +16,11 @@
                 <h2>ID: {{ student.id }}</h2>
                 <p>Полное имя: {{ student.first_name }} {{ student.last_name }}</p>
                 <p>Email: {{ student.email }}</p>
+                <p>Специальность: {{ student.major }}</p>
+                <p>Курс: {{ student.course }}</p>
                 <!-- Добавьте другие атрибуты по вашему усмотрению -->
             </div>
-            <a href="/students?id={{ student.id }}">Смотреть всю информацию</a>
+            <a href="/pages/students/{{ student.id }}">Смотреть всю информацию</a>
         </div>
         {% endfor %}
     </div>

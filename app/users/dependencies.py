@@ -2,7 +2,7 @@ from fastapi import Request, HTTPException, status, Depends
 from jose import jwt, JWTError
 from datetime import datetime, timezone
 from app.config import get_auth_data
-from app.exceptions import TokenExpiredException, NoJwtException, NoUserIdException, ForbiddenException
+from app.exceptions import TokenExpiredException, NoJwtException, NoUserIdException, ForbiddenException, TokenNoFound
 from app.users.dao import UsersDAO
 from app.users.models import User
 
@@ -10,7 +10,7 @@ from app.users.models import User
 def get_token(request: Request):
     token = request.cookies.get('users_access_token')
     if not token:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Token not found')
+        raise TokenNoFound
     return token
 
 
@@ -40,4 +40,3 @@ async def get_current_admin_user(current_user: User = Depends(get_current_user))
     if current_user.is_admin:
         return current_user
     raise ForbiddenException
-

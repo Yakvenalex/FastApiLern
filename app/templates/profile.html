@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница профиля</title>
+    <link rel="stylesheet" type="text/css" href="/static/style/student.css">
+</head>
+<body>
+<div class="container">
+    <h1>Мой профиль</h1>
+    <div class="student-profile">
+        <div class="student-info">
+            <h2>ID: {{ profile.id }}</h2>
+            <p><strong>Полное имя:</strong> {{ profile.first_name }} {{ profile.last_name }}</p>
+            <p><strong>Email:</strong> {{ profile.email }}</p>
+            <p><strong>Пароль в хэше:</strong> {{ profile.password }}</p>
+        </div>
+    </div>
+    <button type="submit" id="logout-button" class="submit-button" onclick="logoutFunction()">Выйти</button>
+</div>
+<script src="/static/js/script.js"></script>
+</body>
+</html>

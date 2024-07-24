@@ -44,5 +44,6 @@ class Student(Base):
             "enrollment_year": self.enrollment_year,
             "course": self.course,
             "special_notes": self.special_notes,
-            "major_id": self.major_id
+            "major_id": self.major_id,
+            'photo': self.photo
         }

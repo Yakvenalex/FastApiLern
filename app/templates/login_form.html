@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма входа</title>
+    <link rel="stylesheet" type="text/css" href="/static/style/register.css">
+</head>
+<body>
+<div class="container">
+    <h1>Войти</h1>
+    <form id="login-form" class="registration-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit" id="login-button" class="submit-button" onclick="loginFunction(event)">Войти</button>
+    </form>
+</div>
+
+<!-- Подключаем внешний JavaScript-файл -->
+<script src="/static/js/script.js"></script>
+</body>
+</html>

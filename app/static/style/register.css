@@ -1,0 +1,61 @@
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Контейнер для формы */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок страницы */
+h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Стили формы */
+.registration-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Поля ввода */
+.registration-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.registration-form input[type="email"],
+.registration-form input[type="password"],
+.registration-form input[type="tel"],
+.registration-form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Кнопка отправки */
+.submit-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
